@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .todo-container {
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      width: 360px;
+    }
+    .todo-container h1 {
+      margin: 0 0 16px;
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
+    }
+    /* We changed this from a div to a form so it can send data */
+    .input-box {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .task-input {
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .add-button {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #4a90e2;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .task-list {
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .task-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .task-list li:last-child {
+      border-bottom: none;
+    }
+    .delete-btn {
+      background: none;
+      border: none;
+      color: #ff4d4d;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="todo-container">
+    <h1>📋 MY TO-DO LIST</h1>
+    
+    <form class="input-box" action="/add" method="POST">
+      <input class="task-input" type="text" name="task_input" placeholder="Write a new task here..." required>
+      <button class="add-button" type="submit">ADD TASK</button>
+    </form>
+
+    <ul class="task-list">
+      {% for task in tasks %}
+        <li>
+          <span>• {{ task }}</span>
+          
+          <form action="/delete/{{ loop.index0 }}" method="POST" style="display: inline;">
+            <button type="submit" class="delete-btn">❌</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>
