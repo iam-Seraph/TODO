@@ -1,0 +1,3 @@
+idk first simple project ig 
+ai was used to orgnise the already used code i rechecked code i dont think anything got changed...
+welp one project a week day ig 
