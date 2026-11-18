@@ -1,10 +1,11 @@
 import os
 from flask import Flask, render_template, request, redirect
+from pathlib import Path
 
 app = Flask(__name__)
 
 # This is the name of our paper notebook file on your computer
-DATA_FILE = "tasks.txt"
+DATA_FILE = Path(__file__).resolve().parent / "data" / "tasks.txt"
 
 def read_local_tasks():
     """Helper function: Tells the Chef to read the notebook file."""
